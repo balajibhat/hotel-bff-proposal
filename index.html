@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CDE x Hotel BFF — Services & Pricing Proposal</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --blue: #2756c7;
+  --blue-light: #3a6ad8;
+  --blue-dark: #1e449e;
+  --black: #1e1e1e;
+  --white: #ffffff;
+  --gray: #e5e5e5;
+  --gray-mid: #6b6b6b;
+  --lavender: #b3b3f8;
+  --mint: #94d7c2;
+  --peach: #f1b08c;
+  --cyan: #b0edfc;
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--black);
+  background: var(--white);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--blue);
+  color: var(--white);
+}
+
+/* ── PRELOADER ── */
+.preloader {
+  position: fixed; inset: 0; z-index: 9999;
+  background: var(--black);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+  cursor: pointer;
+}
+.preloader.done { opacity: 0; visibility: hidden; pointer-events: none; }
+.preloader-brand {
+  display: flex; flex-direction: column; align-items: center; gap: 1.5rem;
+}
+.preloader-logo {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.02em;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fade-up 0.6s ease 0.2s forwards;
+}
+.preloader-logo span { color: var(--blue); }
+.preloader-sub {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gray-mid);
+  opacity: 0;
+  animation: fade-up 0.6s ease 0.6s forwards;
+}
+.preloader-enter {
+  position: absolute;
+  bottom: 12%;
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gray-mid);
+  opacity: 0;
+  animation: fade-up 0.6s ease 1s forwards;
+}
+.preloader-enter::after {
+  content: '';
+  display: block;
+  width: 1px; height: 30px;
+  background: var(--blue);
+  margin: 0.8rem auto 0;
+  animation: scroll-pulse 2s ease-in-out infinite;
+}
+@keyframes scroll-pulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(0.5); }
+  50% { opacity: 1; transform: scaleY(1); }
+}
+@keyframes fade-up {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── GRAIN ── */
+.grain {
+  position: fixed; inset: 0; z-index: 9990; pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 256px;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 1.25rem 2.5rem;
+  display: flex; justify-content: space-between; align-items: center;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(30,30,30,0.06);
+  transition: transform 0.3s ease;
+}
+nav.hidden { transform: translateY(-100%); }
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--black);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+.nav-logo span { color: var(--blue); }
+.nav-links { display: flex; gap: 2rem; }
+.nav-links a {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray-mid);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.nav-links a:hover { color: var(--blue); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  text-align: center;
+  padding: 6rem 2rem;
+  background: var(--black);
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 30% 50%, rgba(39,86,199,0.15) 0%, transparent 60%),
+              radial-gradient(ellipse at 70% 80%, rgba(179,179,248,0.08) 0%, transparent 50%);
+}
+.hero-content { position: relative; z-index: 1; max-width: 800px; }
+.hero-badge {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--blue);
+  border: 1px solid rgba(39,86,199,0.3);
+  padding: 0.5rem 1.25rem;
+  border-radius: 100px;
+  margin-bottom: 2.5rem;
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+}
+.hero h1 em {
+  font-style: normal;
+  background: linear-gradient(135deg, var(--cyan), var(--lavender), var(--blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero p {
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: var(--gray-mid);
+  line-height: 1.7;
+  max-width: 550px;
+  margin: 0 auto 3rem;
+}
+.hero-meta {
+  display: flex; gap: 3rem; justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+}
+.hero-meta strong { color: var(--white); display: block; font-size: 1.1rem; letter-spacing: 0; text-transform: none; margin-bottom: 0.25rem; }
+
+/* ── SECTIONS ── */
+section {
+  padding: 7rem 2rem;
+}
+.section-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.section-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 1rem;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  color: var(--black);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+.section-desc {
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: #555;
+  line-height: 1.8;
+  max-width: 650px;
+}
+
+/* ── CONTEXT SECTION ── */
+.context { background: var(--white); }
+.context-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-top: 3.5rem;
+}
+.context-card {
+  background: #fafafa;
+  border: 1px solid var(--gray);
+  border-radius: 16px;
+  padding: 2.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.context-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.06);
+}
+.context-card .icon {
+  width: 48px; height: 48px;
+  background: var(--blue);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+}
+.context-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+.context-card p {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #555;
+  line-height: 1.7;
+}
+
+/* ── URGENCY BAR ── */
+.urgency {
+  background: var(--black);
+  padding: 5rem 2rem;
+}
+.urgency-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.urgency .section-label { color: var(--peach); }
+.urgency .section-title { color: var(--white); }
+.urgency-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+}
+.urgency-item {
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.urgency-item::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 3px;
+}
+.urgency-item:nth-child(1)::before { background: linear-gradient(90deg, #e74c3c, #c0392b); }
+.urgency-item:nth-child(2)::before { background: linear-gradient(90deg, var(--blue), var(--lavender)); }
+.urgency-item:nth-child(3)::before { background: linear-gradient(90deg, var(--mint), var(--cyan)); }
+.urgency-region {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gray-mid);
+  margin-bottom: 0.75rem;
+}
+.urgency-year {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+.urgency-consequence {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.6;
+}
+
+/* ── PHASES ── */
+.phases { background: #fafafa; }
+.phase-cards {
+  display: flex; flex-direction: column;
+  gap: 2rem;
+  margin-top: 3.5rem;
+}
+.phase-card {
+  background: var(--white);
+  border: 1px solid var(--gray);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+.phase-card:hover {
+  box-shadow: 0 20px 60px rgba(0,0,0,0.06);
+}
+.phase-header {
+  display: flex; align-items: center; gap: 2rem;
+  padding: 2.5rem 3rem;
+  cursor: pointer;
+  user-select: none;
+}
+.phase-number {
+  width: 56px; height: 56px;
+  border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--white);
+  flex-shrink: 0;
+}
+.phase-card:nth-child(1) .phase-number { background: var(--blue); }
+.phase-card:nth-child(2) .phase-number { background: linear-gradient(135deg, var(--blue), var(--lavender)); }
+.phase-card:nth-child(3) .phase-number { background: linear-gradient(135deg, var(--blue-dark), var(--mint)); }
+.phase-header-text { flex: 1; }
+.phase-header-text h3 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+.phase-header-text p {
+  font-size: 0.85rem;
+  color: var(--gray-mid);
+}
+.phase-price {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-align: right;
+  flex-shrink: 0;
+}
+.phase-price small {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: var(--gray-mid);
+  letter-spacing: 0.05em;
+}
+.phase-toggle {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--gray);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.3s ease, background 0.3s ease;
+  font-size: 0.8rem;
+  color: var(--gray-mid);
+}
+.phase-card.open .phase-toggle {
+  transform: rotate(180deg);
+  background: var(--blue);
+  border-color: var(--blue);
+  color: var(--white);
+}
+.phase-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+}
+.phase-card.open .phase-body {
+  max-height: 1200px;
+}
+.phase-content {
+  padding: 0 3rem 2.5rem;
+  border-top: 1px solid var(--gray);
+  padding-top: 2rem;
+}
+.phase-content h4 {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  margin-top: 1.5rem;
+}
+.phase-content h4:first-child { margin-top: 0; }
+.phase-content ul {
+  list-style: none;
+  display: flex; flex-direction: column; gap: 0.5rem;
+}
+.phase-content li {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: #444;
+  line-height: 1.6;
+  padding-left: 1.25rem;
+  position: relative;
+}
+.phase-content li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0.55em;
+  width: 6px; height: 6px;
+  background: var(--blue);
+  border-radius: 50%;
+}
+.phase-content .payment-note {
+  margin-top: 1.25rem;
+  padding: 1rem 1.25rem;
+  background: #f5f7ff;
+  border-radius: 10px;
+  border-left: 3px solid var(--blue);
+  font-size: 0.8rem;
+  color: #555;
+  line-height: 1.6;
+}
+.phase-content .payment-note strong { color: var(--black); }
+
+/* ── SITEMAP ── */
+.sitemap-section { background: var(--white); }
+.sitemap-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+  margin-top: 3rem;
+}
+.sitemap-item {
+  background: #fafafa;
+  border: 1px solid var(--gray);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+  cursor: default;
+}
+.sitemap-item:hover {
+  transform: translateY(-3px);
+  border-color: var(--blue);
+}
+.sitemap-num {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--lavender);
+  margin-bottom: 0.5rem;
+}
+.sitemap-name {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--black);
+  margin-bottom: 0.4rem;
+}
+.sitemap-desc {
+  font-size: 0.7rem;
+  font-weight: 300;
+  color: var(--gray-mid);
+  line-height: 1.5;
+}
+
+/* ── TIMELINE ── */
+.timeline-section {
+  background: var(--white);
+  padding: 7rem 2rem;
+}
+.timeline {
+  position: relative;
+  margin-top: 3.5rem;
+  padding: 2rem 0;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: var(--gray);
+  transform: translateX(-50%);
+}
+.timeline-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+.timeline-item:nth-child(odd) { flex-direction: row; }
+.timeline-item:nth-child(even) { flex-direction: row-reverse; }
+.timeline-content {
+  width: 45%;
+  padding: 2rem;
+  background: #fafafa;
+  border: 1px solid var(--gray);
+  border-radius: 16px;
+}
+.timeline-item:nth-child(odd) .timeline-content { margin-right: auto; text-align: right; }
+.timeline-item:nth-child(even) .timeline-content { margin-left: auto; text-align: left; }
+.timeline-dot {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: var(--blue);
+  border: 3px solid var(--white);
+  box-shadow: 0 0 0 2px var(--blue);
+  z-index: 2;
+}
+.timeline-week {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 0.5rem;
+}
+.timeline-content h3 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+.timeline-content p {
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: var(--gray-mid);
+  line-height: 1.6;
+}
+
+/* ── SAVINGS ── */
+.savings {
+  background: var(--black);
+  padding: 7rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.savings::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 80% 20%, rgba(39,86,199,0.12) 0%, transparent 60%),
+              radial-gradient(ellipse at 20% 80%, rgba(148,215,194,0.08) 0%, transparent 50%);
+}
+.savings-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative; z-index: 1;
+}
+.savings .section-label { color: var(--mint); }
+.savings .section-title { color: var(--white); }
+.savings .section-desc { color: rgba(255,255,255,0.5); }
+
+.comparison-table {
+  margin-top: 3rem;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+.comparison-table thead th {
+  padding: 1.25rem 1.5rem;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gray-mid);
+  text-align: left;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.comparison-table thead th:last-child { text-align: right; }
+.comparison-table tbody td {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.7);
+}
+.comparison-table tbody td:first-child {
+  font-weight: 500;
+  color: var(--white);
+}
+.comparison-table .standard-price {
+  text-decoration: line-through;
+  color: rgba(255,255,255,0.3);
+}
+.comparison-table .bff-price {
+  color: var(--mint);
+  font-weight: 600;
+}
+.comparison-table .savings-amount {
+  text-align: right;
+  color: var(--peach);
+  font-weight: 600;
+}
+
+.savings-total {
+  margin-top: 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+.savings-box {
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
+  padding: 2.5rem;
+  text-align: center;
+}
+.savings-box.highlight {
+  background: rgba(39,86,199,0.1);
+  border-color: rgba(39,86,199,0.3);
+}
+.savings-box-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gray-mid);
+  margin-bottom: 0.75rem;
+}
+.savings-box-value {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--white);
+}
+.savings-box.highlight .savings-box-value {
+  background: linear-gradient(135deg, var(--mint), var(--cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.savings-box-sub {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.4);
+  margin-top: 0.5rem;
+}
+.savings-note {
+  margin-top: 2.5rem;
+  padding: 1.5rem 2rem;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.7;
+}
+
+/* ── LEAD MODEL ── */
+.lead-model { background: #fafafa; }
+.lead-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-top: 3rem;
+}
+.lead-card {
+  background: var(--white);
+  border: 1px solid var(--gray);
+  border-radius: 20px;
+  padding: 2.5rem;
+}
+.lead-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+.lead-card p {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+.lead-criteria {
+  list-style: none;
+  display: flex; flex-direction: column; gap: 0.6rem;
+}
+.lead-criteria li {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #444;
+  line-height: 1.5;
+  padding-left: 1.5rem;
+  position: relative;
+}
+.lead-criteria li::before {
+  content: '\2713';
+  position: absolute;
+  left: 0;
+  color: var(--blue);
+  font-weight: 700;
+}
+.lead-price-tag {
+  margin-top: 1.5rem;
+  display: inline-block;
+  padding: 0.6rem 1.25rem;
+  background: rgba(39,86,199,0.08);
+  border-radius: 8px;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--blue);
+}
+
+/* ── TERMS ── */
+.terms { background: var(--white); }
+.terms-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.term-item {
+  padding: 1.5rem;
+  border: 1px solid var(--gray);
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #444;
+  line-height: 1.6;
+}
+.term-item strong {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--black);
+  margin-bottom: 0.4rem;
+  font-size: 0.85rem;
+}
+
+/* ── CTA / FOOTER ── */
+.cta {
+  background: var(--blue);
+  padding: 7rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.1) 0%, transparent 60%);
+}
+.cta-inner {
+  position: relative; z-index: 1;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.cta h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+.cta p {
+  font-size: 1rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+}
+.cta-steps {
+  display: flex; flex-direction: column; gap: 1rem;
+  text-align: left;
+  max-width: 450px;
+  margin: 0 auto 3rem;
+}
+.cta-step {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 1rem 1.5rem;
+  background: rgba(255,255,255,0.1);
+  border-radius: 12px;
+  font-size: 0.85rem;
+  color: var(--white);
+}
+.cta-step-num {
+  width: 28px; height: 28px;
+  background: var(--white);
+  color: var(--blue);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+.cta-contact {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.6);
+}
+.cta-contact a {
+  color: var(--white);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.footer {
+  background: var(--black);
+  padding: 2rem;
+  text-align: center;
+}
+.footer p {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+}
+.footer p span { color: var(--blue); }
+
+/* ── SCROLL ANIMATIONS ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .context-grid, .lead-grid, .savings-total { grid-template-columns: 1fr; }
+  .urgency-grid { grid-template-columns: 1fr; }
+  .sitemap-grid { grid-template-columns: repeat(2, 1fr); }
+  .terms-grid { grid-template-columns: 1fr; }
+  .phase-header { padding: 1.5rem 2rem; flex-wrap: wrap; gap: 1rem; }
+  .phase-content { padding: 0 2rem 2rem; }
+  .nav-links { display: none; }
+  .timeline::before { left: 20px; }
+  .timeline-item, .timeline-item:nth-child(even) { flex-direction: row; }
+  .timeline-content { width: calc(100% - 50px); margin-left: 50px !important; text-align: left !important; }
+  .timeline-dot { left: 20px; }
+  .hero-meta { flex-direction: column; gap: 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- Preloader -->
+<div class="preloader" onclick="this.classList.add('done')">
+  <div class="preloader-brand">
+    <div class="preloader-logo">C<span>D</span>E</div>
+    <div class="preloader-sub">Services & Pricing Proposal</div>
+  </div>
+  <div class="preloader-enter">Click or scroll to enter</div>
+</div>
+
+<!-- Grain -->
+<div class="grain"></div>
+
+<!-- Nav -->
+<nav>
+  <a href="#" class="nav-logo">C<span>D</span>E</a>
+  <div class="nav-links">
+    <a href="#context">Context</a>
+    <a href="#phases">Phases</a>
+    <a href="#sitemap">Sitemap</a>
+    <a href="#timeline">Timeline</a>
+    <a href="#savings">Savings</a>
+    <a href="#next">Next Steps</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Prepared for Hotel BFF</div>
+    <h1>Make Sustainability <em>Your Growth Engine</em></h1>
+    <p>A brand, website, and growth marketing engagement to reposition Hotel BFF as the go-to platform for hotel sustainability.</p>
+    <div class="hero-meta">
+      <div><strong>$14,000</strong>Upfront Investment</div>
+      <div><strong>10-12 Weeks</strong>Kickoff to Launch</div>
+      <div><strong>3 Phases</strong>Brand. Web. Growth.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Context -->
+<section class="context" id="context">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">The Opportunity</div>
+      <div class="section-title">Hotels need sustainability now.<br>Most don't know where to start.</div>
+      <div class="section-desc">Hotel BFF has the platform. The missing piece is a brand and digital presence that communicates the full value, not just the certification.</div>
+    </div>
+    <div class="context-grid reveal">
+      <div class="context-card">
+        <div class="icon"><svg width="24" height="24" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+        <h3>Current Positioning</h3>
+        <p>The existing site leads with GSTC certification and technical compliance language. It speaks to sustainability insiders, not hotel operators looking for practical solutions and ROI.</p>
+      </div>
+      <div class="context-card">
+        <div class="icon"><svg width="24" height="24" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+        <h3>Target Positioning</h3>
+        <p>An accessible, end-to-end sustainability partner. Lead with what hotels get: cost savings, compliance, better search rankings, and a new generation of travelers. Certification is the outcome, not the pitch.</p>
+      </div>
+      <div class="context-card">
+        <div class="icon"><svg width="24" height="24" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+        <h3>Immediate ROI</h3>
+        <p>Hotels see returns from staff retraining and operational changes alone, before any infrastructure investment. The platform starts at $2,000/year. The value proposition is clear.</p>
+      </div>
+      <div class="context-card">
+        <div class="icon"><svg width="24" height="24" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg></div>
+        <h3>Full Platform</h3>
+        <p>Self-evaluation, staff training, vendor marketplace, certification prep, carbon monitoring, ROI calculators, and financing schemes. The website needs to show all of this, not just the certification path.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Urgency -->
+<section class="urgency" id="urgency">
+  <div class="urgency-inner">
+    <div class="reveal">
+      <div class="section-label">2030 Compliance Deadlines</div>
+      <div class="section-title">The clock is ticking. The market is ready.</div>
+    </div>
+    <div class="urgency-grid reveal">
+      <div class="urgency-item">
+        <div class="urgency-region">Turkey</div>
+        <div class="urgency-year">2030</div>
+        <div class="urgency-consequence">Hotels that are not sustainability-certified risk losing their operating license entirely.</div>
+      </div>
+      <div class="urgency-item">
+        <div class="urgency-region">European Union</div>
+        <div class="urgency-year">2030</div>
+        <div class="urgency-consequence">Non-certified hotels lose access to EU listings on major OTAs like Booking.com and Expedia.</div>
+      </div>
+      <div class="urgency-item">
+        <div class="urgency-region">Global</div>
+        <div class="urgency-year">Ongoing</div>
+        <div class="urgency-consequence">More regions are introducing compliance frameworks. Early movers capture the sustainability-conscious traveler market.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Phases -->
+<section class="phases" id="phases">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">The Engagement</div>
+      <div class="section-title">Three phases. One growth engine.</div>
+      <div class="section-desc">Each phase builds on the last. Brand informs website. Website powers marketing. Marketing generates leads.</div>
+    </div>
+    <div class="phase-cards reveal">
+
+      <!-- Phase 1 -->
+      <div class="phase-card open">
+        <div class="phase-header" onclick="togglePhase(this)">
+          <div class="phase-number">01</div>
+          <div class="phase-header-text">
+            <h3>Brand Repositioning</h3>
+            <p>Shift from certification tool to end-to-end sustainability partner</p>
+          </div>
+          <div class="phase-price">$4,000<small>One-time</small></div>
+          <div class="phase-toggle">&#9660;</div>
+        </div>
+        <div class="phase-body">
+          <div class="phase-content">
+            <h4>Deliverables</h4>
+            <ul>
+              <li>Brand strategy and positioning document</li>
+              <li>Revised visual identity system (logo refinement or redesign, color palette, typography, visual language)</li>
+              <li>Brand guidelines document</li>
+              <li>Messaging framework and tone of voice guide</li>
+              <li>Complete file package (logo files in all formats, brand assets, style guide PDF)</li>
+            </ul>
+            <h4>What Hotel BFF Provides</h4>
+            <ul>
+              <li>All copywriting. CDE delivers the strategic messaging framework and brand direction; your writers execute the copy based on that framework.</li>
+            </ul>
+            <div class="payment-note">
+              <strong>Timeline:</strong> 3-4 weeks<br>
+              <strong>Payment:</strong> 50% upfront ($2,000) / 50% on delivery ($2,000)
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 2 -->
+      <div class="phase-card">
+        <div class="phase-header" onclick="togglePhase(this)">
+          <div class="phase-number">02</div>
+          <div class="phase-header-text">
+            <h3>Website Redesign</h3>
+            <p>10-page conversion-optimized site replacing the Gamma.app build</p>
+          </div>
+          <div class="phase-price">$10,000<small>One-time</small></div>
+          <div class="phase-toggle">&#9660;</div>
+        </div>
+        <div class="phase-body">
+          <div class="phase-content">
+            <h4>Technical Scope</h4>
+            <ul>
+              <li>Responsive design (mobile, tablet, desktop)</li>
+              <li>CMS integration for blog/resources</li>
+              <li>SEO foundation (meta tags, schema markup, page speed optimization)</li>
+              <li>Integration with existing app (app.hotelbff.com) for login/dashboard</li>
+              <li>Analytics setup (Google Analytics 4, conversion tracking)</li>
+              <li>Up to 2 rounds of design revisions</li>
+            </ul>
+            <h4>Does Not Include</h4>
+            <ul>
+              <li>Copywriting (Hotel BFF provides based on Phase 1 framework)</li>
+              <li>ROI calculator development (CDE builds the landing page; product team builds the tools)</li>
+              <li>Ongoing hosting/maintenance (quoted separately)</li>
+              <li>Additional pages beyond 10 ($500-800 per page)</li>
+            </ul>
+            <div class="payment-note">
+              <strong>Timeline:</strong> 6-8 weeks (can overlap with Phase 1)<br>
+              <strong>Payment:</strong> 40% upfront ($4,000) / 30% at design approval ($3,000) / 30% on launch ($3,000)
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 3 -->
+      <div class="phase-card">
+        <div class="phase-header" onclick="togglePhase(this)">
+          <div class="phase-number">03</div>
+          <div class="phase-header-text">
+            <h3>Growth Marketing</h3>
+            <p>Performance marketing engine with pay-per-lead alignment</p>
+          </div>
+          <div class="phase-price">$3,000/mo<small>+ $300/qualified lead</small></div>
+          <div class="phase-toggle">&#9660;</div>
+        </div>
+        <div class="phase-body">
+          <div class="phase-content">
+            <h4>Monthly Retainer Includes</h4>
+            <ul>
+              <li>Paid media strategy and campaign management (Google Ads, Meta Ads, LinkedIn Ads)</li>
+              <li>Audience research and targeting (by region, hotel size, compliance urgency)</li>
+              <li>Ad creative development (static and video assets)</li>
+              <li>Landing page optimization and A/B testing</li>
+              <li>Monthly performance reporting and strategy calls</li>
+              <li>SEO monitoring and recommendations</li>
+            </ul>
+            <h4>Ad Spend</h4>
+            <ul>
+              <li>Separate from CDE fees, paid directly by Hotel BFF to ad platforms</li>
+              <li>Recommended starting budget: $2,000-3,000/month, scaling based on performance</li>
+            </ul>
+            <div class="payment-note">
+              <strong>Minimum commitment:</strong> 3 months (to allow optimization)<br>
+              <strong>Payment:</strong> Retainer invoiced on the 1st / Lead fees invoiced at month-end<br>
+              <strong>Cancellation:</strong> 30 days written notice after initial 3-month period
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Sitemap -->
+<section class="sitemap-section" id="sitemap">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Website Architecture</div>
+      <div class="section-title">10 pages. Every one earns its place.</div>
+    </div>
+    <div class="sitemap-grid reveal">
+      <div class="sitemap-item">
+        <div class="sitemap-num">01</div>
+        <div class="sitemap-name">Homepage</div>
+        <div class="sitemap-desc">ROI messaging, value props, social proof</div>
+      </div>
+      <div class="sitemap-item">
+        <div class="sitemap-num">02</div>
+        <div class="sitemap-name">How It Works</div>
+        <div class="sitemap-desc">5-stage journey, simplified and accessible</div>
+      </div>
+      <div class="sitemap-item">
+        <div class="sitemap-num">03</div>
+        <div class="sitemap-name">For Hotels</div>
+        <div class="sitemap-desc">Benefits, compliance deadlines, ROI data</div>
+      </div>
+      <div class="sitemap-item">
+        <div class="sitemap-num">04</div>
+        <div class="sitemap-name">Marketplace</div>
+        <div class="sitemap-desc">Vendor directory and registration</div>
+      </div>
+      <div class="sitemap-item">
+        <div class="sitemap-num">05</div>
+        <div class="sitemap-name">Pricing</div>
+        <div class="sitemap-desc">Tier breakdown, free eval to full cert</div>
+      </div>
+      <div class="sitemap-item">
+        <div class="sitemap-num">06</div>
+        <div class="sitemap-name">About / Team</div>
+        <div class="sitemap-desc">Mission, co-founders, credentials</div>
+      </div>
+      <div class="sitemap-item">
+        <div class="sitemap-num">07</div>
+        <div class="sitemap-name">Resources</div>
+        <div class="sitemap-desc">Blog, guides, sustainability news</div>
+      </div>
+      <div class="sitemap-item">
+        <div class="sitemap-num">08</div>
+        <div class="sitemap-name">ROI Calculator</div>
+        <div class="sitemap-desc">Solar, wind, biosphere tools landing</div>
+      </div>
+      <div class="sitemap-item">
+        <div class="sitemap-num">09</div>
+        <div class="sitemap-name">Case Studies</div>
+        <div class="sitemap-desc">Success stories and certification journeys</div>
+      </div>
+      <div class="sitemap-item">
+        <div class="sitemap-num">10</div>
+        <div class="sitemap-name">Get Started</div>
+        <div class="sitemap-desc">Lead capture, demo booking, consultation</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Timeline -->
+<section class="timeline-section" id="timeline">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Roadmap</div>
+      <div class="section-title">From kickoff to leads in 12 weeks.</div>
+    </div>
+    <div class="timeline reveal">
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-week">Weeks 1-2</div>
+          <h3>Brand Discovery</h3>
+          <p>Stakeholder interviews, competitive audit, positioning strategy development.</p>
+        </div>
+        <div class="timeline-dot"></div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-week">Weeks 2-4</div>
+          <h3>Brand Delivery</h3>
+          <p>Visual identity, guidelines, messaging framework. Hotel BFF team begins copywriting.</p>
+        </div>
+        <div class="timeline-dot"></div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-week">Weeks 3-6</div>
+          <h3>Website Design</h3>
+          <p>Wireframes, UI design, 2 revision rounds. Overlaps with brand delivery.</p>
+        </div>
+        <div class="timeline-dot"></div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-week">Weeks 6-10</div>
+          <h3>Website Development</h3>
+          <p>Build, CMS setup, SEO, analytics, app integration, QA and launch.</p>
+        </div>
+        <div class="timeline-dot"></div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-week">Week 11+</div>
+          <h3>Growth Marketing Launch</h3>
+          <p>Campaign setup, audience targeting, creative deployment. Leads start flowing.</p>
+        </div>
+        <div class="timeline-dot"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Savings -->
+<section class="savings" id="savings">
+  <div class="savings-inner">
+    <div class="reveal">
+      <div class="section-label">What You're Saving</div>
+      <div class="section-title">Paying It Forward For a Good Cause</div>
+      <div class="section-desc">Here's a direct comparison against our standard client rates. Hotel BFF receives a reduced rate across the entire engagement.</div>
+    </div>
+
+    <table class="comparison-table reveal">
+      <thead>
+        <tr>
+          <th>Service</th>
+          <th>Standard Rate</th>
+          <th>Hotel BFF Rate</th>
+          <th>You Save</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Brand Repositioning</td>
+          <td class="standard-price">$5,500</td>
+          <td class="bff-price">$4,000</td>
+          <td class="savings-amount">$1,500 (27% off)</td>
+        </tr>
+        <tr>
+          <td>Website Redesign (10 pages)</td>
+          <td class="standard-price">$10,000</td>
+          <td class="bff-price">$10,000</td>
+          <td class="savings-amount">Standard rate</td>
+        </tr>
+        <tr>
+          <td>Growth Marketing (per month)</td>
+          <td class="standard-price">$4,400/mo flat</td>
+          <td class="bff-price">$3,000/mo + leads</td>
+          <td class="savings-amount">$1,400/mo on base</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="savings-total reveal">
+      <div class="savings-box">
+        <div class="savings-box-label">Standard Year 1 Total</div>
+        <div class="savings-box-value">$68,300</div>
+        <div class="savings-box-sub">$15,500 upfront + $52,800 marketing</div>
+      </div>
+      <div class="savings-box highlight">
+        <div class="savings-box-label">Hotel BFF Year 1 Total</div>
+        <div class="savings-box-value">$50,000</div>
+        <div class="savings-box-sub">$14,000 upfront + $36,000 marketing + lead fees</div>
+      </div>
+    </div>
+
+    <div class="savings-note reveal">
+      <strong style="color: var(--white);">Year 1 savings on base rates: $18,300.</strong> The marketing retainer is reduced by $1,400/month with a pay-per-lead component instead. Hotel BFF pays less up front each month. CDE takes on the performance risk. You only pay the $300 lead fee when a qualified hotel comes through the door. The website is priced at our standard rate. Comparable agencies quote $15,000-25,000 for equivalent scope.
+    </div>
+  </div>
+</section>
+
+<!-- Lead Model -->
+<section class="lead-model" id="leads">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Performance Model</div>
+      <div class="section-title">You pay for results. We eat the risk.</div>
+    </div>
+    <div class="lead-grid reveal">
+      <div class="lead-card">
+        <h3>What counts as a qualified lead?</h3>
+        <p>A hotel property that meets all of the following:</p>
+        <ul class="lead-criteria">
+          <li>Is an operating hotel (not a restaurant, hostel, or non-hotel property)</li>
+          <li>Located in a region with sustainability compliance requirements, or shows clear intent to pursue certification</li>
+          <li>Submits a demo request, consultation booking, or completed inquiry form through the website or campaign landing pages</li>
+          <li>Provides valid contact information (name, hotel name, email, phone)</li>
+        </ul>
+        <div class="lead-price-tag">$300 per qualified lead</div>
+      </div>
+      <div class="lead-card">
+        <h3>How leads are tracked</h3>
+        <p>Full transparency on every lead, every month.</p>
+        <ul class="lead-criteria">
+          <li>All leads tracked via website CRM and form submission system</li>
+          <li>CDE and Hotel BFF review leads together on monthly reporting calls</li>
+          <li>Disputed leads resolved within 7 business days</li>
+          <li>Lead fees invoiced monthly alongside the retainer</li>
+          <li>Monthly performance reports with full campaign metrics</li>
+        </ul>
+        <div class="lead-price-tag">$3,000/mo base retainer</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Terms -->
+<section class="terms" id="terms">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Terms</div>
+      <div class="section-title">The fine print, kept simple.</div>
+    </div>
+    <div class="terms-grid reveal">
+      <div class="term-item">
+        <strong>Currency</strong>
+        All prices in USD.
+      </div>
+      <div class="term-item">
+        <strong>Payment Terms</strong>
+        Net 30 from invoice date.
+      </div>
+      <div class="term-item">
+        <strong>Marketing Commitment</strong>
+        3-month minimum. Cancellable with 30 days notice after.
+      </div>
+      <div class="term-item">
+        <strong>Ad Spend</strong>
+        Separate from CDE fees. Paid directly by Hotel BFF to ad platforms.
+      </div>
+      <div class="term-item">
+        <strong>Scope Changes</strong>
+        Work beyond this proposal quoted separately.
+      </div>
+      <div class="term-item">
+        <strong>Case Study Rights</strong>
+        CDE may feature Hotel BFF as a case study (with content approval).
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="next">
+  <div class="cta-inner">
+    <h2>Ready to put your best foot forward?</h2>
+    <p>Three steps to get started. We kick off within 3 business days of deposit.</p>
+    <div class="cta-steps">
+      <div class="cta-step">
+        <div class="cta-step-num">1</div>
+        Review this proposal and confirm scope alignment.
+      </div>
+      <div class="cta-step">
+        <div class="cta-step-num">2</div>
+        Sign off and submit Phase 1 deposit ($2,000).
+      </div>
+      <div class="cta-step">
+        <div class="cta-step-num">3</div>
+        CDE kicks off brand discovery and strategy.
+      </div>
+    </div>
+    <div class="cta-contact">
+      Core Digital Expansion<br>
+      <a href="mailto:balaji@cd-expansion.com">balaji@cd-expansion.com</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<div class="footer">
+  <p><span>Core Digital Expansion</span> &mdash; March 2026</p>
+</div>
+
+<script>
+// Preloader
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.querySelector('.preloader').classList.add('done');
+  }, 2500);
+});
+
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15 });
+reveals.forEach(el => observer.observe(el));
+
+// Phase accordion
+function togglePhase(header) {
+  const card = header.parentElement;
+  const wasOpen = card.classList.contains('open');
+  // Close all
+  document.querySelectorAll('.phase-card').forEach(c => c.classList.remove('open'));
+  // Toggle clicked
+  if (!wasOpen) card.classList.add('open');
+}
+
+// Nav hide on scroll
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  const currentScroll = window.pageYOffset;
+  if (currentScroll > lastScroll && currentScroll > 100) {
+    nav.classList.add('hidden');
+  } else {
+    nav.classList.remove('hidden');
+  }
+  lastScroll = currentScroll;
+});
+</script>
+
+</body>
+</html>
