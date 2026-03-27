@@ -53,16 +53,14 @@ body {
   display: flex; flex-direction: column; align-items: center; gap: 1.5rem;
 }
 .preloader-logo {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 700;
-  color: var(--white);
-  letter-spacing: -0.02em;
   opacity: 0;
   transform: translateY(30px);
   animation: fade-up 0.6s ease 0.2s forwards;
 }
-.preloader-logo span { color: var(--blue); }
+.preloader-logo img {
+  height: clamp(40px, 8vw, 70px);
+  width: auto;
+}
 .preloader-sub {
   font-family: var(--font-body);
   font-size: 0.75rem;
@@ -121,14 +119,14 @@ nav {
 }
 nav.hidden { transform: translateY(-100%); }
 .nav-logo {
-  font-family: var(--font-display);
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--black);
+  display: flex;
+  align-items: center;
   text-decoration: none;
-  letter-spacing: -0.02em;
 }
-.nav-logo span { color: var(--blue); }
+.nav-logo img {
+  height: 28px;
+  width: auto;
+}
 .nav-links { display: flex; gap: 2rem; }
 .nav-links a {
   font-size: 0.75rem;
@@ -888,7 +886,7 @@ section {
 <!-- Preloader -->
 <div class="preloader" onclick="this.classList.add('done')">
   <div class="preloader-brand">
-    <div class="preloader-logo">C<span>D</span>E</div>
+    <div class="preloader-logo"><img src="cde-logo-white.png" alt="CDE"></div>
     <div class="preloader-sub">Services & Pricing Proposal</div>
   </div>
   <div class="preloader-enter">Click or scroll to enter</div>
@@ -899,7 +897,7 @@ section {
 
 <!-- Nav -->
 <nav>
-  <a href="#" class="nav-logo">C<span>D</span>E</a>
+  <a href="#" class="nav-logo"><img src="cde-logo-black.png" alt="CDE"></a>
   <div class="nav-links">
     <a href="#context">Context</a>
     <a href="#phases">Phases</a>
@@ -917,7 +915,7 @@ section {
     <h1>Make Sustainability <em>Your Growth Engine</em></h1>
     <p>A brand, website, and growth marketing engagement to reposition Hotel BFF as the go-to platform for hotel sustainability.</p>
     <div class="hero-meta">
-      <div><strong>$14,000</strong>Upfront Investment</div>
+      <div><strong>$16,000</strong>Upfront Investment</div>
       <div><strong>10-12 Weeks</strong>Kickoff to Launch</div>
       <div><strong>3 Phases</strong>Brand. Web. Growth.</div>
     </div>
@@ -1086,6 +1084,17 @@ section {
               <li>Monthly performance reporting and strategy calls</li>
               <li>SEO monitoring and recommendations</li>
             </ul>
+            <h4>One-Time Setup</h4>
+            <ul>
+              <li>Google Ads, Meta Ads, and LinkedIn Ads account setup and configuration</li>
+              <li>CRM integration and lead pipeline setup</li>
+              <li>Google Tag Manager implementation</li>
+              <li>Google Analytics 4 event tracking and conversion setup</li>
+            </ul>
+            <div class="payment-note" style="border-left-color: var(--mint);">
+              <strong>Setup fee:</strong> <span style="text-decoration: line-through; color: var(--gray-mid);">$3,000</span> <strong style="color: var(--blue);">$2,000</strong> (reduced rate for Hotel BFF)<br>
+              Invoiced with first month's retainer.
+            </div>
             <h4>Ad Spend</h4>
             <ul>
               <li>Separate from CDE fees, paid directly by Hotel BFF to ad platforms</li>
@@ -1255,24 +1264,30 @@ section {
           <td class="bff-price">$3,000/mo + leads</td>
           <td class="savings-amount">$1,400/mo on base</td>
         </tr>
+        <tr>
+          <td>Marketing Setup (CRM, GTM, GA4, Ad Platforms)</td>
+          <td class="standard-price">$3,000</td>
+          <td class="bff-price">$2,000</td>
+          <td class="savings-amount">$1,000 (33% off)</td>
+        </tr>
       </tbody>
     </table>
 
     <div class="savings-total reveal">
       <div class="savings-box">
         <div class="savings-box-label">Standard Year 1 Total</div>
-        <div class="savings-box-value">$68,300</div>
-        <div class="savings-box-sub">$15,500 upfront + $52,800 marketing</div>
+        <div class="savings-box-value">$71,300</div>
+        <div class="savings-box-sub">$18,500 upfront + $52,800 marketing</div>
       </div>
       <div class="savings-box highlight">
         <div class="savings-box-label">Hotel BFF Year 1 Total</div>
-        <div class="savings-box-value">$50,000</div>
-        <div class="savings-box-sub">$14,000 upfront + $36,000 marketing + lead fees</div>
+        <div class="savings-box-value">$52,000</div>
+        <div class="savings-box-sub">$16,000 upfront + $36,000 marketing + lead fees</div>
       </div>
     </div>
 
     <div class="savings-note reveal">
-      <strong style="color: var(--white);">Year 1 savings on base rates: $18,300.</strong> The marketing retainer is reduced by $1,400/month with a pay-per-lead component instead. Hotel BFF pays less up front each month. CDE takes on the performance risk. You only pay the $300 lead fee when a qualified hotel comes through the door. The website is priced at our standard rate. Comparable agencies quote $15,000-25,000 for equivalent scope.
+      <strong style="color: var(--white);">Year 1 savings on base rates: $19,300.</strong> The marketing retainer is reduced by $1,400/month with a pay-per-lead component instead. The marketing setup fee (CRM, GTM, GA4, ad platform configuration) is reduced from $3,000 to $2,000. Hotel BFF pays less up front each month. CDE takes on the performance risk. You only pay the $300 lead fee when a qualified hotel comes through the door. The website is priced at our standard rate. Comparable agencies quote $15,000-25,000 for equivalent scope.
     </div>
   </div>
 </section>
@@ -1376,7 +1391,7 @@ section {
 
 <!-- Footer -->
 <div class="footer">
-  <p><span>Core Digital Expansion</span> &mdash; March 2026</p>
+  <p><img src="cde-logo-white.png" alt="CDE" style="height: 20px; width: auto; vertical-align: middle; margin-right: 8px; opacity: 0.5;"> &mdash; March 2026</p>
 </div>
 
 <script>
