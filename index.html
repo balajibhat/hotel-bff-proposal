@@ -75,8 +75,9 @@
     background: rgba(255,255,255,0.06);
   }
   .sidebar-link.active {
-    color: var(--white);
-    background: rgba(0,92,207,0.2);
+    color: #ffffff;
+    background: rgba(0,92,207,0.25);
+    font-weight: 600;
   }
   .sidebar-cta {
     margin: 1.5rem 1.5rem 0;
@@ -266,7 +267,9 @@
   }
   .deadline-card .region { font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--cyan); font-weight: 600; margin-bottom: 8px; }
   .deadline-card .year { font-family: 'Space Grotesk', sans-serif; font-size: 36px; font-weight: 700; color: #fff; margin-bottom: 12px; }
-  .deadline-card p { font-size: 14px; color: rgba(255,255,255,.6); line-height: 1.6; }
+  .deadline-card p { font-size: 14px; color: rgba(255,255,255,.6); line-height: 1.6; margin-bottom: 12px; }
+  .deadline-card strong { color: #fff; }
+  .deadline-source { font-size: 11px; color: rgba(255,255,255,.3); font-style: italic; }
 
   /* ── Phase cards ── */
   .phase-card {
@@ -550,7 +553,7 @@
     <div class="sidebar-group">
       <div class="sidebar-group-label">Overview</div>
       <a href="#opportunity" class="sidebar-link" data-section="opportunity">The Opportunity</a>
-      <a href="#deadlines" class="sidebar-link" data-section="deadlines">2030 Deadlines</a>
+      <a href="#deadlines" class="sidebar-link" data-section="deadlines">The Time Is Now</a>
     </div>
     <div class="sidebar-group">
       <div class="sidebar-group-label">Scope</div>
@@ -641,28 +644,51 @@
     </div>
   </section>
 
-  <!-- ── 2030 Deadlines ── -->
+  <!-- ── The Time Is Now ── -->
   <section class="section full-width section-dark" id="deadlines">
     <div>
-      <h2 class="section-title" style="text-align: center;">The clock is ticking. The market is ready.</h2>
-      <div style="height: 40px;"></div>
+      <div class="section-label" style="text-align: center; color: var(--cyan);">Global Regulatory Landscape</div>
+      <h2 class="section-title" style="text-align: center;">The time is now.</h2>
+      <p class="section-desc" style="text-align: center; margin: 0 auto 48px; max-width: 650px; color: rgba(255,255,255,0.5);">Governments worldwide are mandating sustainability for hotels — not suggesting it. Non-compliance means fines, permit denials, and lost market access. These are confirmed regulations with real enforcement.</p>
       <div class="grid-3">
         <div class="deadline-card">
-          <div class="region">Turkey</div>
-          <div class="year">2030</div>
-          <p>Hotels that are not sustainability-certified risk losing their operating license entirely.</p>
+          <div class="region">European Union</div>
+          <div class="year">Sep 2026</div>
+          <p>Green Transition Directive bans unsubstantiated sustainability claims. Hotels using "eco-friendly" or "green" without third-party certification face fines up to <strong>4% of annual turnover</strong>.</p>
+          <div class="deadline-source">Directive (EU) 2024/825</div>
         </div>
         <div class="deadline-card">
           <div class="region">European Union</div>
           <div class="year">2030</div>
-          <p>Non-certified hotels lose access to EU listings on major OTAs like Booking.com and Expedia.</p>
+          <p>Energy Performance of Buildings Directive requires worst-performing buildings to meet minimum standards. Non-compliant hotels can be <strong>declared unusable</strong> or denied operating licenses.</p>
+          <div class="deadline-source">Directive (EU) 2024/1275</div>
         </div>
         <div class="deadline-card">
-          <div class="region">Global</div>
-          <div class="year">Ongoing</div>
-          <p>More regions are introducing compliance frameworks. Early movers capture the sustainability-conscious traveler market.</p>
+          <div class="region">India</div>
+          <div class="year">Active Now</div>
+          <p>Energy Conservation Building Code mandatory in 23 of 28 states. Building permits denied without compliance. Energy Conservation Act 2022 mandates audits with fines up to <strong>INR 10 lakh</strong>.</p>
+          <div class="deadline-source">ECBC 2017 + EC Act 2022</div>
+        </div>
+        <div class="deadline-card">
+          <div class="region">Dubai, UAE</div>
+          <div class="year">Active Now</div>
+          <p>Al Sa'fat Green Building System requires minimum Bronze rating for all new hotels. Building permits denied until compliance proven. Fines up to <strong>AED 2,000,000</strong> (~$545K).</p>
+          <div class="deadline-source">Dubai Municipality</div>
+        </div>
+        <div class="deadline-card">
+          <div class="region">Japan</div>
+          <div class="year">April 2025</div>
+          <p>All new buildings — including hotels — must meet energy-saving standards. No floor area minimum. Fines up to <strong>JPY 3,000,000</strong> (~$20K). ZEH standards required by 2030.</p>
+          <div class="deadline-source">Building Energy Conservation Act 2022</div>
+        </div>
+        <div class="deadline-card">
+          <div class="region">Australia</div>
+          <div class="year">Mid-2026</div>
+          <p>NCC 2025 requires mandatory on-site solar PV for hotels. 4-star NABERS Energy rating minimum. Commercial Building Disclosure fines up to <strong>AUD 330,000</strong> per breach.</p>
+          <div class="deadline-source">National Construction Code 2025</div>
         </div>
       </div>
+      <p style="text-align: center; color: rgba(255,255,255,0.3); font-size: 12px; margin-top: 40px;">Singapore, South Korea, Thailand, and New Zealand also have mandatory regulations in force or taking effect by 2026. The window to get ahead is closing.</p>
     </div>
   </section>
 
