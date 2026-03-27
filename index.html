@@ -496,8 +496,7 @@ section {
   flex-shrink: 0;
 }
 .phase-card:nth-child(1) .phase-number { background: var(--blue); }
-.phase-card:nth-child(2) .phase-number { background: linear-gradient(135deg, var(--blue), var(--lavender)); }
-.phase-card:nth-child(3) .phase-number { background: linear-gradient(135deg, var(--blue-dark), var(--mint)); }
+.phase-card:nth-child(2) .phase-number { background: linear-gradient(135deg, var(--blue-dark), var(--mint)); }
 .phase-header-text { flex: 1; }
 .phase-header-text h3 {
   font-family: var(--font-display);
@@ -998,7 +997,7 @@ section {
 
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
-  .context-grid, .lead-grid, .savings-total { grid-template-columns: 1fr; }
+  .lead-grid, .savings-total { grid-template-columns: 1fr; }
   .urgency-grid { grid-template-columns: 1fr; }
   .sitemap-grid { grid-template-columns: repeat(2, 1fr); }
   .terms-grid { grid-template-columns: 1fr; }
@@ -1031,11 +1030,11 @@ section {
 <nav>
   <a href="#" class="nav-logo"><img src="cde-logo-black.png" alt="CDE"></a>
   <div class="nav-links">
-    <a href="#context">Context</a>
+    <a href="#context">Opportunity</a>
     <a href="#phases">Phases</a>
-    <a href="#sitemap">Sitemap</a>
     <a href="#timeline">Timeline</a>
     <a href="#savings">Savings</a>
+    <a href="#leads">Attribution</a>
     <a href="#next">Next Steps</a>
   </div>
 </nav>
@@ -1047,9 +1046,9 @@ section {
     <h1>Make Sustainability <em>Your Growth Engine</em></h1>
     <p>A brand, website, and growth marketing engagement to reposition Hotel BFF as the go-to platform for hotel sustainability.</p>
     <div class="hero-meta">
-      <div><strong>$16,000</strong>Upfront Investment</div>
+      <div><strong>$14,000</strong>Phase 1 Investment</div>
       <div><strong>10-12 Weeks</strong>Kickoff to Launch</div>
-      <div><strong>3 Phases</strong>Brand. Web. Growth.</div>
+      <div><strong>2 Phases</strong>Build. Then Grow.</div>
     </div>
   </div>
 </section>
@@ -1148,8 +1147,8 @@ section {
   <div class="section-inner">
     <div class="reveal">
       <div class="section-label">The Engagement</div>
-      <div class="section-title">Three phases. One growth engine.</div>
-      <div class="section-desc">Each phase builds on the last. Brand informs website. Website powers marketing. Marketing generates leads.</div>
+      <div class="section-title">Two phases. Build, then grow.</div>
+      <div class="section-desc">Phase 1 gives Hotel BFF the brand and website to communicate its value. Phase 2 puts it in front of every hotel that needs it.</div>
     </div>
     <div class="phase-cards reveal">
 
@@ -1158,15 +1157,15 @@ section {
         <div class="phase-header" onclick="togglePhase(this)">
           <div class="phase-number">01</div>
           <div class="phase-header-text">
-            <h3>Brand Repositioning</h3>
-            <p>Shift from certification tool to end-to-end sustainability partner</p>
+            <h3>Brand + Website</h3>
+            <p>New identity and 10-page site replacing the Gamma.app build</p>
           </div>
-          <div class="phase-price">$4,000<small>One-time</small></div>
+          <div class="phase-price">$14,000<small>One-time</small></div>
           <div class="phase-toggle">&#9660;</div>
         </div>
         <div class="phase-body">
           <div class="phase-content">
-            <h4>Deliverables</h4>
+            <h4>Brand Repositioning — $4,000</h4>
             <ul>
               <li>Brand strategy and positioning document</li>
               <li>Revised visual identity system (logo refinement or redesign, color palette, typography, visual language)</li>
@@ -1174,13 +1173,31 @@ section {
               <li>Messaging framework and tone of voice guide</li>
               <li>Complete file package (logo files in all formats, brand assets, style guide PDF)</li>
             </ul>
+            <h4>Website Redesign — $10,000</h4>
+            <ul>
+              <li>10-page responsive website (mobile, tablet, desktop)</li>
+              <li>CMS integration for blog/resources</li>
+              <li>SEO foundation (meta tags, schema markup, page speed optimization)</li>
+              <li>Integration with existing app (app.hotelbff.com) for login/dashboard</li>
+              <li>Analytics setup (Google Analytics 4, conversion tracking)</li>
+              <li>Up to 2 rounds of design revisions</li>
+            </ul>
             <h4>What Hotel BFF Provides</h4>
             <ul>
               <li>All copywriting. CDE delivers the strategic messaging framework and brand direction; your writers execute the copy based on that framework.</li>
             </ul>
+            <h4>Does Not Include</h4>
+            <ul>
+              <li>ROI calculator development (CDE builds the landing page; product team builds the tools)</li>
+              <li>Ongoing hosting/maintenance (quoted separately)</li>
+              <li>Additional pages beyond 10 ($500-800 per page)</li>
+            </ul>
+            <div class="payment-note" style="border-left-color: var(--mint);">
+              <strong>This enables:</strong> Hotels see themselves in your pitch. The website communicates the full platform — not just certification — with clear ROI messaging and compliance urgency. Organic traffic starts converting.
+            </div>
             <div class="payment-note">
-              <strong>Timeline:</strong> 3-4 weeks<br>
-              <strong>Payment:</strong> 50% upfront ($2,000) / 50% on delivery ($2,000)
+              <strong>Timeline:</strong> 10-12 weeks<br>
+              <strong>Payment:</strong> Brand — 50/50 ($2,000 upfront / $2,000 on delivery). Website — 40/30/30 ($4,000 upfront / $3,000 at design approval / $3,000 on launch).
             </div>
           </div>
         </div>
@@ -1191,80 +1208,56 @@ section {
         <div class="phase-header" onclick="togglePhase(this)">
           <div class="phase-number">02</div>
           <div class="phase-header-text">
-            <h3>Website Redesign</h3>
-            <p>10-page conversion-optimized site replacing the Gamma.app build</p>
+            <h3>Growth Activation</h3>
+            <p>Paid media microsite, channel-based retainer, and pay-per-lead</p>
           </div>
-          <div class="phase-price">$10,000<small>One-time</small></div>
+          <div class="phase-price">$500/mo<small>per channel + $100/lead</small></div>
           <div class="phase-toggle">&#9660;</div>
         </div>
         <div class="phase-body">
           <div class="phase-content">
-            <h4>Technical Scope</h4>
+            <h4>One-Time Setup — <span style="text-decoration: line-through; color: var(--gray-mid);">$3,000</span> <span style="color: var(--blue); font-weight: 700;">$2,000</span></h4>
             <ul>
-              <li>Responsive design (mobile, tablet, desktop)</li>
-              <li>CMS integration for blog/resources</li>
-              <li>SEO foundation (meta tags, schema markup, page speed optimization)</li>
-              <li>Integration with existing app (app.hotelbff.com) for login/dashboard</li>
-              <li>Analytics setup (Google Analytics 4, conversion tracking)</li>
-              <li>Up to 2 rounds of design revisions</li>
-            </ul>
-            <h4>Does Not Include</h4>
-            <ul>
-              <li>Copywriting (Hotel BFF provides based on Phase 1 framework)</li>
-              <li>ROI calculator development (CDE builds the landing page; product team builds the tools)</li>
-              <li>Ongoing hosting/maintenance (quoted separately)</li>
-              <li>Additional pages beyond 10 ($500-800 per page)</li>
-            </ul>
-            <div class="payment-note">
-              <strong>Timeline:</strong> 6-8 weeks (can overlap with Phase 1)<br>
-              <strong>Payment:</strong> 40% upfront ($4,000) / 30% at design approval ($3,000) / 30% on launch ($3,000)
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Phase 3 -->
-      <div class="phase-card">
-        <div class="phase-header" onclick="togglePhase(this)">
-          <div class="phase-number">03</div>
-          <div class="phase-header-text">
-            <h3>Growth Marketing</h3>
-            <p>Performance marketing engine with pay-per-lead alignment</p>
-          </div>
-          <div class="phase-price">$3,000/mo<small>+ $300/qualified lead</small></div>
-          <div class="phase-toggle">&#9660;</div>
-        </div>
-        <div class="phase-body">
-          <div class="phase-content">
-            <h4>Monthly Retainer Includes</h4>
-            <ul>
-              <li>Paid media strategy and campaign management (Google Ads, Meta Ads, LinkedIn Ads)</li>
-              <li>Audience research and targeting (by region, hotel size, compliance urgency)</li>
-              <li>Ad creative development (static and video assets)</li>
-              <li>Landing page optimization and A/B testing</li>
-              <li>Monthly performance reporting and strategy calls</li>
-              <li>SEO monitoring and recommendations</li>
-            </ul>
-            <h4>One-Time Setup</h4>
-            <ul>
-              <li>Google Ads, Meta Ads, and LinkedIn Ads account setup and configuration</li>
+              <li>Dedicated paid media microsite (e.g. get.hotelbff.com) — all paid traffic routes here for clean attribution</li>
+              <li>Conversion-optimized landing pages tailored by audience segment and channel</li>
+              <li>Ad platform account setup and configuration</li>
               <li>CRM integration and lead pipeline setup</li>
               <li>Google Tag Manager implementation</li>
               <li>Google Analytics 4 event tracking and conversion setup</li>
             </ul>
-            <div class="payment-note" style="border-left-color: var(--mint);">
-              <strong>Setup fee:</strong> <span style="text-decoration: line-through; color: var(--gray-mid);">$3,000</span> <strong style="color: var(--blue);">$2,000</strong> (reduced rate for Hotel BFF)<br>
-              Invoiced with first month's retainer.
-            </div>
+            <h4>Channel Retainer — $500/month per active channel</h4>
+            <ul>
+              <li>Each channel includes strategy, campaign management, creative development, and reporting</li>
+              <li>Available channels: Google Search, Meta Ads, LinkedIn Ads, Podcasts (via Acast), and more</li>
+              <li>Activate channels as you scale — start with 1-2, add more when ready</li>
+              <li>Monthly performance reporting and strategy calls</li>
+              <li>Landing page optimization and A/B testing on the microsite</li>
+            </ul>
+            <h4>Qualified Lead Fee — $100 per lead</h4>
+            <ul>
+              <li>A qualified lead is a hotel that fills out the form on the paid media microsite</li>
+              <li>Must be an operating hotel in a market where sustainability applies</li>
+              <li>100% attribution — only paid traffic reaches the microsite, so every lead is marketing-sourced</li>
+              <li>Leads reviewed together on monthly reporting calls</li>
+              <li>Disputed leads resolved within 7 business days</li>
+            </ul>
             <h4>Ad Spend</h4>
             <ul>
               <li>Separate from CDE fees, paid directly by Hotel BFF to ad platforms</li>
               <li>Recommended starting budget: $2,000-3,000/month, scaling based on performance</li>
             </ul>
+            <h4>Not Included</h4>
+            <ul>
+              <li>Influencer or podcast host outreach and relationship management (quoted separately)</li>
+              <li>Content creation beyond ad creative (blog posts, whitepapers, etc.)</li>
+            </ul>
+            <div class="payment-note" style="border-left-color: var(--mint);">
+              <strong>This enables:</strong> Every hotel that needs sustainability lands on a page built to convert. You only pay for channels you activate, and lead fees only trigger when a real hotel fills out the form. CDE carries the performance risk.
+            </div>
             <div class="payment-note">
-              <strong>Minimum commitment:</strong> 3 months (to allow optimization)<br>
-              <strong>Payment:</strong> Retainer invoiced on the 1st / Lead fees invoiced at month-end<br>
-              <strong>Cancellation:</strong> 30 days written notice after initial 3-month period
+              <strong>Minimum commitment:</strong> 3 months per channel (to allow optimization)<br>
+              <strong>Payment:</strong> Setup invoiced upfront. Retainer invoiced on the 1st. Lead fees invoiced at month-end.<br>
+              <strong>Cancellation:</strong> 30 days written notice after initial 3-month period per channel.
             </div>
           </div>
         </div>
@@ -1341,12 +1334,12 @@ section {
   <div class="section-inner">
     <div class="reveal">
       <div class="section-label">Roadmap</div>
-      <div class="section-title">From kickoff to leads in 12 weeks.</div>
+      <div class="section-title">From kickoff to leads in 14 weeks.</div>
     </div>
     <div class="timeline reveal">
       <div class="timeline-item">
         <div class="timeline-content">
-          <div class="timeline-week">Weeks 1-2</div>
+          <div class="timeline-week">Weeks 1-2 — Phase 1</div>
           <h3>Brand Discovery</h3>
           <p>Stakeholder interviews, competitive audit, positioning strategy development.</p>
         </div>
@@ -1354,7 +1347,7 @@ section {
       </div>
       <div class="timeline-item">
         <div class="timeline-content">
-          <div class="timeline-week">Weeks 2-4</div>
+          <div class="timeline-week">Weeks 2-4 — Phase 1</div>
           <h3>Brand Delivery</h3>
           <p>Visual identity, guidelines, messaging framework. Hotel BFF team begins copywriting.</p>
         </div>
@@ -1362,7 +1355,7 @@ section {
       </div>
       <div class="timeline-item">
         <div class="timeline-content">
-          <div class="timeline-week">Weeks 3-6</div>
+          <div class="timeline-week">Weeks 3-6 — Phase 1</div>
           <h3>Website Design</h3>
           <p>Wireframes, UI design, 2 revision rounds. Overlaps with brand delivery.</p>
         </div>
@@ -1370,17 +1363,25 @@ section {
       </div>
       <div class="timeline-item">
         <div class="timeline-content">
-          <div class="timeline-week">Weeks 6-10</div>
-          <h3>Website Development</h3>
+          <div class="timeline-week">Weeks 6-10 — Phase 1</div>
+          <h3>Website Development & Launch</h3>
           <p>Build, CMS setup, SEO, analytics, app integration, QA and launch.</p>
         </div>
         <div class="timeline-dot"></div>
       </div>
       <div class="timeline-item">
         <div class="timeline-content">
-          <div class="timeline-week">Week 11+</div>
-          <h3>Growth Marketing Launch</h3>
-          <p>Campaign setup, audience targeting, creative deployment. Leads start flowing.</p>
+          <div class="timeline-week">Weeks 10-12 — Phase 2</div>
+          <h3>Growth Setup</h3>
+          <p>Microsite build, ad platform configuration, CRM and GTM integration, first channel strategy.</p>
+        </div>
+        <div class="timeline-dot"></div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-week">Week 13+ — Phase 2</div>
+          <h3>Campaigns Live</h3>
+          <p>First channels activated, creative deployed, leads start flowing through the microsite.</p>
         </div>
         <div class="timeline-dot"></div>
       </div>
@@ -1394,7 +1395,7 @@ section {
     <div class="reveal">
       <div class="section-label">What You're Saving</div>
       <div class="section-title">Paying It Forward For a Good Cause</div>
-      <div class="section-desc">Here's a direct comparison against our standard client rates. Hotel BFF receives a reduced rate across the entire engagement.</div>
+      <div class="section-desc">Here's a direct comparison against our standard client rates, assuming 2 active channels. Hotel BFF receives a reduced rate across the entire engagement.</div>
     </div>
 
     <table class="comparison-table reveal">
@@ -1420,35 +1421,35 @@ section {
           <td class="savings-amount">Standard rate</td>
         </tr>
         <tr>
-          <td>Growth Marketing (per month)</td>
-          <td class="standard-price">$4,400/mo flat</td>
-          <td class="bff-price">$3,000/mo + leads</td>
-          <td class="savings-amount">$1,400/mo on base</td>
-        </tr>
-        <tr>
-          <td>Marketing Setup (CRM, GTM, GA4, Ad Platforms)</td>
+          <td>Growth Setup (microsite, CRM, GTM, GA4, ads)</td>
           <td class="standard-price">$3,000</td>
           <td class="bff-price">$2,000</td>
           <td class="savings-amount">$1,000 (33% off)</td>
+        </tr>
+        <tr>
+          <td>Channel Retainer (2 channels/mo)</td>
+          <td class="standard-price">$4,000/mo</td>
+          <td class="bff-price">$1,000/mo + $100/lead</td>
+          <td class="savings-amount">$3,000/mo on base</td>
         </tr>
       </tbody>
     </table>
 
     <div class="savings-total reveal">
       <div class="savings-box">
-        <div class="savings-box-label">Standard Year 1 Total</div>
-        <div class="savings-box-value">$71,300</div>
-        <div class="savings-box-sub">$18,500 upfront + $52,800 marketing</div>
+        <div class="savings-box-label">Standard Year 1 Total (2 channels)</div>
+        <div class="savings-box-value">$66,500</div>
+        <div class="savings-box-sub">$18,500 upfront + $48,000 marketing</div>
       </div>
       <div class="savings-box highlight">
-        <div class="savings-box-label">Hotel BFF Year 1 Total</div>
-        <div class="savings-box-value">$52,000</div>
-        <div class="savings-box-sub">$16,000 upfront + $36,000 marketing + lead fees</div>
+        <div class="savings-box-label">Hotel BFF Year 1 Total (2 channels)</div>
+        <div class="savings-box-value">$28,000</div>
+        <div class="savings-box-sub">$16,000 upfront + $12,000 marketing + lead fees</div>
       </div>
     </div>
 
     <div class="savings-note reveal">
-      <strong style="color: var(--white);">Year 1 savings on base rates: $19,300.</strong> The marketing retainer is reduced by $1,400/month with a pay-per-lead component instead. The marketing setup fee (CRM, GTM, GA4, ad platform configuration) is reduced from $3,000 to $2,000. Hotel BFF pays less up front each month. CDE takes on the performance risk. You only pay the $300 lead fee when a qualified hotel comes through the door. The website is priced at our standard rate. Comparable agencies quote $15,000-25,000 for equivalent scope.
+      <strong style="color: var(--white);">Year 1 savings on base rates: $38,500.</strong> Instead of a flat $2,000/channel retainer, Hotel BFF pays $500/channel with a $100 qualified lead fee. CDE takes on the performance risk — you pay less each month and only pay lead fees when a real hotel comes through the microsite. Start with 1-2 channels, add more as results prove out. The website is priced at our standard rate. Comparable agencies quote $15,000-25,000 for equivalent scope.
     </div>
   </div>
 </section>
@@ -1458,31 +1459,30 @@ section {
   <div class="section-inner">
     <div class="reveal">
       <div class="section-label">Performance Model</div>
-      <div class="section-title">You pay for results. We eat the risk.</div>
+      <div class="section-title">Clean attribution. No guesswork.</div>
     </div>
     <div class="lead-grid reveal">
       <div class="lead-card">
-        <h3>What counts as a qualified lead?</h3>
-        <p>A hotel property that meets all of the following:</p>
+        <h3>Why a microsite?</h3>
+        <p>All paid traffic routes to a dedicated subdomain (e.g. get.hotelbff.com). Only paid campaigns point here — no organic, no referral, no direct traffic. This means:</p>
         <ul class="lead-criteria">
-          <li>Is an operating hotel (not a restaurant, hostel, or non-hotel property)</li>
-          <li>Located in a region with sustainability compliance requirements, or shows clear intent to pursue certification</li>
-          <li>Submits a demo request, consultation booking, or completed inquiry form through the website or campaign landing pages</li>
-          <li>Provides valid contact information (name, hotel name, email, phone)</li>
+          <li>100% of form fills are marketing-sourced — zero attribution debate</li>
+          <li>Landing pages optimized per channel and audience segment</li>
+          <li>Isolated analytics for clear performance measurement</li>
+          <li>A/B testing without affecting the main site</li>
         </ul>
-        <div class="lead-price-tag">$300 per qualified lead</div>
+        <div class="lead-price-tag">$100 per qualified lead via microsite</div>
       </div>
       <div class="lead-card">
-        <h3>How leads are tracked</h3>
-        <p>Full transparency on every lead, every month.</p>
+        <h3>What counts as a qualified lead?</h3>
+        <p>Simple criteria. No ambiguity.</p>
         <ul class="lead-criteria">
-          <li>All leads tracked via website CRM and form submission system</li>
-          <li>CDE and Hotel BFF review leads together on monthly reporting calls</li>
-          <li>Disputed leads resolved within 7 business days</li>
-          <li>Lead fees invoiced monthly alongside the retainer</li>
-          <li>Monthly performance reports with full campaign metrics</li>
+          <li>Is an operating hotel (not a restaurant, hostel, or non-hotel property)</li>
+          <li>Located in a market where sustainability applies (compliance region or expressed intent)</li>
+          <li>Filled out the form on the paid media microsite</li>
+          <li>Provided valid contact information (name, hotel name, email)</li>
         </ul>
-        <div class="lead-price-tag">$3,000/mo base retainer</div>
+        <div class="lead-price-tag">$500/mo per active channel</div>
       </div>
     </div>
   </div>
@@ -1505,8 +1505,8 @@ section {
         Net 30 from invoice date.
       </div>
       <div class="term-item">
-        <strong>Marketing Commitment</strong>
-        3-month minimum. Cancellable with 30 days notice after.
+        <strong>Channel Commitment</strong>
+        3-month minimum per channel. Cancellable with 30 days notice after.
       </div>
       <div class="term-item">
         <strong>Ad Spend</strong>
@@ -1514,7 +1514,7 @@ section {
       </div>
       <div class="term-item">
         <strong>Scope Changes</strong>
-        Work beyond this proposal quoted separately.
+        Influencer/podcast outreach, content beyond ad creative, and additional channels quoted separately.
       </div>
       <div class="term-item">
         <strong>Case Study Rights</strong>
@@ -1528,7 +1528,7 @@ section {
 <section class="cta" id="next">
   <div class="cta-inner">
     <h2>Ready to put your best foot forward?</h2>
-    <p>Three steps to get started. We kick off within 3 business days of deposit.</p>
+    <p>Three steps to get started. We kick off Phase 1 within 3 business days of deposit.</p>
     <div class="cta-steps">
       <div class="cta-step">
         <div class="cta-step-num">1</div>
