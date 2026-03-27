@@ -34,71 +34,65 @@
 
   /* ── Sidebar ── */
   .sidebar {
-    position: fixed;
-    top: 0; left: 0;
     width: var(--sidebar-w);
-    height: 100vh;
+    position: fixed; top: 0; left: 0; bottom: 0;
     background: var(--black);
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    z-index: 100;
+    padding: 2rem 0;
     overflow-y: auto;
+    z-index: 100;
   }
-
   .sidebar-header {
-    padding: 28px 24px 20px;
-    border-bottom: 1px solid rgba(255,255,255,.08);
+    padding: 0 1.5rem 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    margin-bottom: 1rem;
   }
-
-  .sidebar-header img { width: 120px; display: block; margin-bottom: 14px; }
-  .sidebar-header p { font-size: 13px; color: rgba(255,255,255,.5); font-weight: 500; }
-
-  .sidebar-nav { flex: 1; padding: 16px 0; }
-
-  .nav-group { margin-bottom: 8px; }
-  .nav-group-label {
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: rgba(255,255,255,.35);
-    padding: 8px 24px 6px;
-    font-weight: 600;
+  .sidebar-logo { height: 24px; width: auto; margin-bottom: 0.5rem; }
+  .sidebar-title {
+    font-size: 0.6rem; font-weight: 500;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
   }
-
-  .nav-link {
+  .sidebar-nav { padding: 0 0.75rem; }
+  .sidebar-group { margin-bottom: 1.25rem; }
+  .sidebar-group-label {
+    font-size: 0.55rem; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(255,255,255,0.25);
+    padding: 0 0.75rem; margin-bottom: 0.4rem;
+  }
+  .sidebar-link {
     display: block;
-    padding: 8px 24px;
-    font-size: 13px;
-    color: rgba(255,255,255,.6);
+    padding: 0.45rem 0.75rem;
+    font-size: 0.78rem; font-weight: 400;
+    color: rgba(255,255,255,0.55);
     text-decoration: none;
-    transition: color .15s, background .15s;
-    border-left: 3px solid transparent;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    line-height: 1.4;
   }
-  .nav-link:hover { color: #fff; background: rgba(255,255,255,.04); }
-  .nav-link.active {
-    color: #fff;
-    background: rgba(255,255,255,.06);
-    border-left-color: var(--blue);
+  .sidebar-link:hover {
+    color: var(--white);
+    background: rgba(255,255,255,0.06);
   }
-
+  .sidebar-link.active {
+    color: var(--white);
+    background: rgba(0,92,207,0.2);
+  }
   .sidebar-cta {
-    padding: 20px 24px;
-    border-top: 1px solid rgba(255,255,255,.08);
+    margin: 1.5rem 1.5rem 0;
+    padding: 1rem;
+    background: rgba(0,92,207,0.15);
+    border-radius: 8px;
+    text-align: center;
   }
   .sidebar-cta a {
-    display: block;
-    text-align: center;
-    background: var(--blue);
-    color: #fff;
-    padding: 10px;
-    border-radius: 8px;
-    font-size: 13px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: opacity .15s;
+    font-size: 0.75rem; font-weight: 600;
+    color: var(--cyan); text-decoration: none;
   }
-  .sidebar-cta a:hover { opacity: .85; }
+  .sidebar-cta p {
+    font-size: 0.6rem; color: rgba(255,255,255,0.35);
+    margin-top: 0.3rem;
+  }
 
   /* ── Main ── */
   .main { margin-left: var(--sidebar-w); overflow-x: hidden; }
@@ -549,33 +543,34 @@
 <!-- ═══════════ SIDEBAR ═══════════ -->
 <aside class="sidebar">
   <div class="sidebar-header">
-    <img src="cde-logo-white.png" alt="Core Digital Expansion">
-    <p>Proposal for Hotel BFF</p>
+    <img src="cde-logo-white.png" alt="CDE" class="sidebar-logo">
+    <div class="sidebar-title">Proposal for Hotel BFF</div>
   </div>
   <nav class="sidebar-nav">
-    <div class="nav-group">
-      <div class="nav-group-label">Overview</div>
-      <a href="#opportunity" class="nav-link" data-section="opportunity">The Opportunity</a>
-      <a href="#deadlines" class="nav-link" data-section="deadlines">2030 Deadlines</a>
+    <div class="sidebar-group">
+      <div class="sidebar-group-label">Overview</div>
+      <a href="#opportunity" class="sidebar-link" data-section="opportunity">The Opportunity</a>
+      <a href="#deadlines" class="sidebar-link" data-section="deadlines">2030 Deadlines</a>
     </div>
-    <div class="nav-group">
-      <div class="nav-group-label">Scope</div>
-      <a href="#phase1" class="nav-link" data-section="phase1">Phase 1: Brand + Website</a>
-      <a href="#phase2" class="nav-link" data-section="phase2">Phase 2: Growth Activation</a>
+    <div class="sidebar-group">
+      <div class="sidebar-group-label">Scope</div>
+      <a href="#phase1" class="sidebar-link" data-section="phase1">Phase 1: Brand + Website</a>
+      <a href="#phase2" class="sidebar-link" data-section="phase2">Phase 2: Growth Activation</a>
     </div>
-    <div class="nav-group">
-      <div class="nav-group-label">Investment</div>
-      <a href="#math" class="nav-link" data-section="math">The Math</a>
-      <a href="#attribution" class="nav-link" data-section="attribution">How Attribution Works</a>
+    <div class="sidebar-group">
+      <div class="sidebar-group-label">Investment</div>
+      <a href="#math" class="sidebar-link" data-section="math">The Math</a>
+      <a href="#attribution" class="sidebar-link" data-section="attribution">How Attribution Works</a>
     </div>
-    <div class="nav-group">
-      <div class="nav-group-label">Logistics</div>
-      <a href="#timeline" class="nav-link" data-section="timeline">Timeline</a>
-      <a href="#terms" class="nav-link" data-section="terms">Terms &amp; Next Steps</a>
+    <div class="sidebar-group">
+      <div class="sidebar-group-label">Logistics</div>
+      <a href="#timeline" class="sidebar-link" data-section="timeline">Timeline</a>
+      <a href="#terms" class="sidebar-link" data-section="terms">Terms & Next Steps</a>
     </div>
   </nav>
   <div class="sidebar-cta">
     <a href="mailto:balaji@cd-expansion.com">balaji@cd-expansion.com</a>
+    <p>Let's talk</p>
   </div>
 </aside>
 
@@ -993,7 +988,7 @@
 <!-- ═══════════ SCROLL SPY ═══════════ -->
 <script>
 (function() {
-  const links = document.querySelectorAll('.nav-link[data-section]');
+  const links = document.querySelectorAll('.sidebar-link[data-section]');
   const sections = [];
 
   links.forEach(function(link) {
