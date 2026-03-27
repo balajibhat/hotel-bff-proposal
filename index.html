@@ -238,42 +238,174 @@ section {
 
 /* ── CONTEXT SECTION ── */
 .context { background: var(--white); }
-.context-grid {
+
+/* Before/After Split */
+.context-split {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  grid-template-columns: 1fr 80px 1fr;
+  align-items: stretch;
   margin-top: 3.5rem;
+  min-height: 400px;
 }
-.context-card {
+.context-before, .context-after {
+  border-radius: 20px;
+  padding: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+.context-before {
+  background: #f0f0f0;
+  border: 1px solid var(--gray);
+}
+.context-before::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 20px,
+    rgba(0,0,0,0.015) 20px,
+    rgba(0,0,0,0.015) 40px
+  );
+}
+.context-after {
+  background: var(--black);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.context-after::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 70% 80%, rgba(39,86,199,0.15) 0%, transparent 60%),
+              radial-gradient(ellipse at 30% 20%, rgba(148,215,194,0.1) 0%, transparent 50%);
+}
+.context-before > *, .context-after > * { position: relative; z-index: 1; }
+.context-side-label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  display: inline-block;
+}
+.context-before .context-side-label {
+  color: #999;
+  background: rgba(0,0,0,0.05);
+}
+.context-after .context-side-label {
+  color: var(--mint);
+  background: rgba(148,215,194,0.1);
+}
+.context-side-title {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1.25rem;
+}
+.context-before .context-side-title { color: #999; }
+.context-after .context-side-title { color: var(--white); }
+.context-side-points {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.context-side-points li {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  padding-left: 1.5rem;
+  position: relative;
+}
+.context-before .context-side-points li {
+  color: #999;
+}
+.context-before .context-side-points li::before {
+  content: '\2717';
+  position: absolute;
+  left: 0;
+  color: #ccc;
+  font-weight: 700;
+}
+.context-after .context-side-points li {
+  color: rgba(255,255,255,0.7);
+}
+.context-after .context-side-points li::before {
+  content: '\2713';
+  position: absolute;
+  left: 0;
+  color: var(--mint);
+  font-weight: 700;
+}
+
+/* Arrow divider */
+.context-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.context-arrow-circle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 24px rgba(39,86,199,0.3);
+  z-index: 2;
+}
+.context-arrow-circle svg {
+  width: 24px;
+  height: 24px;
+  stroke: white;
+  stroke-width: 2.5;
+  fill: none;
+}
+
+/* Stats strip */
+.context-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.context-stat {
+  text-align: center;
+  padding: 2rem 1rem;
+  border-radius: 16px;
   background: #fafafa;
   border: 1px solid var(--gray);
-  border-radius: 16px;
-  padding: 2.5rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, border-color 0.3s ease;
 }
-.context-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.06);
+.context-stat:hover {
+  transform: translateY(-3px);
+  border-color: var(--blue);
 }
-.context-card .icon {
-  width: 48px; height: 48px;
-  background: var(--blue);
-  border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: 1.5rem;
-  font-size: 1.2rem;
-}
-.context-card h3 {
+.context-stat-number {
   font-family: var(--font-display);
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 0.75rem;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--blue);
+  line-height: 1;
+  margin-bottom: 0.5rem;
 }
-.context-card p {
-  font-size: 0.9rem;
-  font-weight: 400;
-  color: #555;
-  line-height: 1.7;
+.context-stat-label {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--gray-mid);
+  line-height: 1.4;
+}
+
+@media (max-width: 900px) {
+  .context-split { grid-template-columns: 1fr; gap: 1rem; }
+  .context-arrow { padding: 0.5rem 0; }
+  .context-arrow-circle { transform: rotate(90deg); }
+  .context-stats { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* ── URGENCY BAR ── */
@@ -930,26 +1062,55 @@ section {
       <div class="section-title">Hotels need sustainability now.<br>Most don't know where to start.</div>
       <div class="section-desc">Hotel BFF has the platform. The missing piece is a brand and digital presence that communicates the full value, not just the certification.</div>
     </div>
-    <div class="context-grid reveal">
-      <div class="context-card">
-        <div class="icon"><svg width="24" height="24" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
-        <h3>Current Positioning</h3>
-        <p>The existing site leads with GSTC certification and technical compliance language. It speaks to sustainability insiders, not hotel operators looking for practical solutions and ROI.</p>
+
+    <!-- Before / After Split -->
+    <div class="context-split reveal">
+      <div class="context-before">
+        <div class="context-side-label">Today</div>
+        <div class="context-side-title">Certification tool<br>for insiders</div>
+        <ul class="context-side-points">
+          <li>Leads with GSTC jargon and compliance language</li>
+          <li>Speaks to sustainability experts, not hotel operators</li>
+          <li>Gamma.app site doesn't convey platform depth</li>
+          <li>No clear ROI message or urgency framing</li>
+          <li>Hotels don't see themselves in the pitch</li>
+        </ul>
       </div>
-      <div class="context-card">
-        <div class="icon"><svg width="24" height="24" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
-        <h3>Target Positioning</h3>
-        <p>An accessible, end-to-end sustainability partner. Lead with what hotels get: cost savings, compliance, better search rankings, and a new generation of travelers. Certification is the outcome, not the pitch.</p>
+      <div class="context-arrow">
+        <div class="context-arrow-circle">
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
       </div>
-      <div class="context-card">
-        <div class="icon"><svg width="24" height="24" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
-        <h3>Immediate ROI</h3>
-        <p>Hotels see returns from staff retraining and operational changes alone, before any infrastructure investment. The platform starts at $2,000/year. The value proposition is clear.</p>
+      <div class="context-after">
+        <div class="context-side-label">After CDE</div>
+        <div class="context-side-title">Growth engine<br>for every hotel</div>
+        <ul class="context-side-points">
+          <li>Leads with cost savings, compliance, and traveler demand</li>
+          <li>Accessible language that resonates with operators and owners</li>
+          <li>Professional site showcasing the full platform</li>
+          <li>Clear ROI story — savings before infrastructure spend</li>
+          <li>Paid campaigns driving qualified hotel leads</li>
+        </ul>
       </div>
-      <div class="context-card">
-        <div class="icon"><svg width="24" height="24" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg></div>
-        <h3>Full Platform</h3>
-        <p>Self-evaluation, staff training, vendor marketplace, certification prep, carbon monitoring, ROI calculators, and financing schemes. The website needs to show all of this, not just the certification path.</p>
+    </div>
+
+    <!-- Stats Strip -->
+    <div class="context-stats reveal">
+      <div class="context-stat">
+        <div class="context-stat-number">$2K</div>
+        <div class="context-stat-label">Platform starts at<br>per year</div>
+      </div>
+      <div class="context-stat">
+        <div class="context-stat-number">42</div>
+        <div class="context-stat-label">GSTC criteria<br>simplified</div>
+      </div>
+      <div class="context-stat">
+        <div class="context-stat-number">2030</div>
+        <div class="context-stat-label">Compliance<br>deadline</div>
+      </div>
+      <div class="context-stat">
+        <div class="context-stat-number">Day 1</div>
+        <div class="context-stat-label">ROI from staff<br>retraining alone</div>
       </div>
     </div>
   </div>
