@@ -125,16 +125,51 @@
   .hero {
     padding: 100px 64px 80px;
     max-width: 1100px;
+    position: relative;
+    overflow: hidden;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
+  .hero-bg {
+    position: absolute;
+    top: -50%;
+    right: -30%;
+    width: 800px;
+    height: 800px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(107,196,166,0.12) 0%, rgba(0,92,207,0.06) 40%, transparent 70%);
+    animation: float 20s ease-in-out infinite;
+    z-index: 0;
+  }
+  .hero-bg-2 {
+    position: absolute;
+    bottom: -40%;
+    left: -20%;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(125,211,232,0.1) 0%, rgba(107,196,166,0.05) 50%, transparent 70%);
+    animation: float 25s ease-in-out infinite reverse;
+    z-index: 0;
+  }
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -20px) scale(1.05); }
+    66% { transform: translate(-20px, 15px) scale(0.95); }
+  }
+  .hero > * { position: relative; z-index: 1; }
 
   .hero-badge {
     display: inline-block;
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 2px;
-    color: var(--blue);
+    color: var(--mint);
     font-weight: 700;
-    background: rgba(0,92,207,.08);
+    background: rgba(107,196,166,.1);
+    border: 1px solid rgba(107,196,166,.2);
     padding: 6px 16px;
     border-radius: 100px;
     margin-bottom: 24px;
@@ -145,30 +180,25 @@
     font-weight: 700;
     margin-bottom: 20px;
     max-width: 700px;
+    line-height: 1.1;
   }
 
   .hero-subtitle {
     font-size: 18px;
     color: var(--gray-mid);
-    max-width: 640px;
+    max-width: 600px;
     line-height: 1.7;
-    margin-bottom: 48px;
+    margin-bottom: 32px;
   }
 
-  .hero-stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+  .hero-mission {
+    font-size: 14px;
+    color: #888;
+    max-width: 500px;
+    line-height: 1.6;
+    padding-top: 24px;
+    border-top: 1px solid var(--gray);
   }
-
-  .hero-stat {
-    background: #f7f7f7;
-    border-radius: 12px;
-    padding: 28px 24px;
-    text-align: center;
-  }
-  .hero-stat .big { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; color: var(--black); }
-  .hero-stat .label { font-size: 14px; color: var(--gray-mid); margin-top: 4px; }
 
   /* ── Cards & Grid ── */
   .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
@@ -503,7 +533,7 @@
     .footer { padding: 40px 32px; }
     .grid-2, .before-after-wrap, .pricing-grid, .big-stat-grid, .terms-grid { grid-template-columns: 1fr; }
     .grid-3, .grid-4 { grid-template-columns: 1fr 1fr; }
-    .hero-stats { grid-template-columns: 1fr; }
+    .hero { min-height: auto; }
     .arrow-circle { display: none; }
     .timeline-h { flex-direction: column; gap: 8px; }
     .timeline-h::before { display: none; }
@@ -559,23 +589,12 @@
 
   <!-- ── Hero ── -->
   <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-bg-2"></div>
     <div class="hero-badge">Prepared for Hotel BFF</div>
-    <h1>Make Sustainability Your Growth Engine</h1>
-    <p class="hero-subtitle">A brand, website, and growth marketing engagement to reposition Hotel BFF as the go-to platform for hotel sustainability.</p>
-    <div class="hero-stats">
-      <div class="hero-stat">
-        <div class="big">$14,000</div>
-        <div class="label">Phase 1 Investment</div>
-      </div>
-      <div class="hero-stat">
-        <div class="big">14 Weeks</div>
-        <div class="label">Kickoff to Leads</div>
-      </div>
-      <div class="hero-stat">
-        <div class="big">2 Phases</div>
-        <div class="label">Build. Then Grow.</div>
-      </div>
-    </div>
+    <h1>Every hotel deserves a sustainable future. We're here to help you lead it.</h1>
+    <p class="hero-subtitle">Hotel BFF is building the platform that makes sustainability accessible for every hotel. This proposal outlines how we'll give that mission the brand, website, and growth engine it deserves.</p>
+    <p class="hero-mission">A partnership between Hotel BFF and Core Digital Expansion to reposition, rebuild, and scale.</p>
   </section>
 
   <!-- ── The Opportunity ── -->
@@ -721,7 +740,7 @@
       <div class="pricing-block border-mint">
         <h4>Channel Retainer</h4>
         <div class="old-price">&nbsp;</div>
-        <div class="big-price">$500/mo</div>
+        <div class="big-price">$1,000/mo</div>
         <div class="price-sub">per active channel</div>
         <ul>
           <li><span class="icon">&#10003;</span> Strategy + campaign management + creative + reporting</li>
@@ -790,8 +809,8 @@
         <tr>
           <td><strong>Channel Retainer (2ch/mo)</strong></td>
           <td>$4,000/mo</td>
-          <td>$1,000/mo + $100/lead</td>
-          <td class="savings">$3,000/mo on base</td>
+          <td>$2,000/mo + $100/lead</td>
+          <td class="savings">$2,000/mo on base</td>
         </tr>
       </tbody>
     </table>
@@ -804,15 +823,15 @@
       </div>
       <div class="big-stat-box featured">
         <div class="label">Hotel BFF Year 1</div>
-        <div class="number">$28,000</div>
-        <div class="sub">$16,000 upfront + $12,000 marketing + lead fees</div>
+        <div class="number">$40,000</div>
+        <div class="sub">$16,000 upfront + $24,000 marketing + lead fees</div>
       </div>
     </div>
 
     <div class="savings-callout">
-      <strong>Year 1 savings on base rates: $38,500.</strong>
+      <strong>Year 1 savings on base rates: $26,500.</strong>
       <br><br>
-      Hotel BFF benefits from reduced rates across every phase of the engagement. The channel retainer alone saves $3,000/month compared to standard pricing, while the pay-per-lead model ensures you only pay for results. As you scale channels, the savings compound further.
+      Hotel BFF benefits from reduced rates across every phase of the engagement. The channel retainer saves $1,000/month per channel compared to standard pricing, while the pay-per-lead model ensures CDE carries the performance risk. Every lead fee is pure upside — you only pay when a real hotel comes through.
     </div>
   </section>
 
